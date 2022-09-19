@@ -22,7 +22,7 @@ function radixSort(arr) {
     //比如 bucketElementCounts[0] 记录就是bucket[0] 桶放入数据的个数
     let bucketElementCounts = new Array(10).fill(0);
     for (let i = 0, n = 1; i < maxLength; i++, n *= 10) {
-
+        //针对每个元素得对应位进行排序处理， 第一次是个位  第二次是十位  第三次是百位
         for (let j = 0; j < arr.length; j++) {
             //取出每个元素的对应位的值
             let digitOfElement = Math.floor(arr[j] / n) % 10;
