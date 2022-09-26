@@ -1,3 +1,4 @@
+//插值查找
 function insertValueSearch(arr, left, right, findVal) {
 if (left > right || findVal < arr[0] || findVal > arr[arr.lengh - 1]) {
         return -1;
