@@ -1,4 +1,6 @@
 //插值查找
+//对于数据量比较大,数组分布比较均匀（数字跳跃性不大）,采用插值查找，速度较快
+//对于数组分布不均匀，该方法不一定比二分查找好
 function insertValueSearch(arr, left, right, findVal) {
 if (left > right || findVal < arr[0] || findVal > arr[arr.lengh - 1]) {
         return -1;
