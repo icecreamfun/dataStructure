@@ -7,7 +7,7 @@ function getNodes(str) {
             map[str[i].charCodeAt()] = 1;
         } else {
             let count = map[str[i].charCodeAt()];
-            map[str[i].charCodeAt()] = ++count;
+            map[str[i].charCodeAt()] = count + 1;
         }
     }
 
@@ -16,6 +16,24 @@ function getNodes(str) {
         nodeArr.push(node);
     }
     return nodeArr;
+}
+/**
+ * 功能:将传入的node节点 的所有叶子节点的赫夫曼编码得到，放入到集合中
+ * @param {*} node 传入节点 
+ * @param {*} code 路径:左子节点是0 右子节点1 
+ * @param {*} str 用户拼接路径 
+ */
+function getCodes(node, code, str) {
+    let str2 = str;
+    str2 += code;
+    if (node) {
+        if (!node.data) {
+            getCodes(node.left, '0', str2);
+            getCodes(node.right, '1', str2);
+        } else {
+            huffmanCodes[node.data] = str2;
+        }
+    }
 }
 
 function createHuffmanTree(arr) {
@@ -47,7 +65,7 @@ class Node {
     }
 
     preOrder() {
-        console.log(this.data);
+        console.log(this.data, this.weight);
         if (this.left != null) {
             this.left.preOrder();
         }
@@ -61,4 +79,10 @@ let content = 'i like like like java do you like a java';
 console.log(getNodes(content));
 
 let node = createHuffmanTree(getNodes(content));
-node.preOrder();
+//node.preOrder();
+
+let huffmanCodes = {};
+let str = '';
+getCodes(node, '', str);
+
+console.log(huffmanCodes);
